@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-
 import { useLocation } from 'react-router-dom';
+import type { LogoProps } from '../../types';
 
-const Logo = ({ className = "" }) => {
+const Logo: React.FC<LogoProps> = ({ className = "" }) => {
     const location = useLocation();
     
     // Determine subtext based on current path

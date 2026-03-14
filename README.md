@@ -77,20 +77,27 @@ The development server will start at `http://localhost:5173`.
 ```
 portfolio-caleb/
 ├── src/
+│   ├── assets/              # Static assets (images, resumes)
+│   ├── bot/                 # FAQ Chatbot engine (upcoming)
 │   ├── components/
 │   │   ├── common/          # Reusable components (Logo, Navbar, Modal, etc.)
 │   │   ├── home/            # Home page components
 │   │   ├── culinary/        # Culinary section components
-│   │   └── service/         # Service section components
-│   ├── hooks/               # Custom React hooks (GitHub API integration)
-│   ├── pages/               # Route pages (Home, Culinary, Service)
+│   │   ├── service/         # Service section components
+│   │   └── tools/           # LabTools utilities
+│   ├── hooks/               # Custom React hooks
+│   ├── lib/
+│   │   └── api/             # API clients (GitHub, Vercel)
+│   ├── pages/               # Route pages (Home, Culinary, Service, LabTools)
+│   ├── store/               # Global state management (Zustand)
+│   ├── types/               # TypeScript definitions
 │   └── App.tsx              # Main application component
-├── .github/
-│   └── workflows/
-│       └── security.yml     # Automated security scanning
 ├── public/
-│   └── favicon.svg          # Custom logo favicon
-└── index.html               # Entry point with CSP headers
+│   ├── favicon.svg          # Portfolio favicon
+│   └── previews/            # Project site previews
+├── .github/                 # CI/CD workflows
+├── scripts/                 # Utility scripts (preview capture)
+└── security_report.md       # NIST CSF 2.0 security audit
 ```
 
 ## 🔒 Security

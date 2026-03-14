@@ -11,105 +11,43 @@ const BackgroundAnimation = () => {
     if (!ctx) return;
 
     let animationFrameId: number;
-    let particles: Particle[] = [];
-    
-    // Configuration
 
-    const connectionDistance = 150;
-    const mouseRadius = 150;
-    
-    // State
-    let mouse = { x: -1000, y: -1000 };
-    let width = 0;
-    let height = 0;
-    let isDarkMode = false;
-
-    const checkDarkMode = () => {
-      isDarkMode = document.documentElement.classList.contains('dark');
-    };
-    
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.attributeName === 'class') {
-          checkDarkMode();
-        }
-      });
-    });
-    
-    observer.observe(document.documentElement, { attributes: true });
-    checkDarkMode();
-
-    class Particle {
+    interface Particle {
       x: number;
       y: number;
       vx: number;
       vy: number;
       size: number;
-      baseX: number;
-      baseY: number;
       density: number;
-
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5; // Velocity X
-        this.vy = (Math.random() - 0.5) * 0.5; // Velocity Y
-        this.size = Math.random() * 2 + 1;
-        this.baseX = this.x;
-        this.baseY = this.y;
-        this.density = (Math.random() * 30) + 1;
-      }
-
-      update() {
-        // Move
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Bounce off edges
-        if (this.x < 0 || this.x > width) this.vx = -this.vx;
-        if (this.y < 0 || this.y > height) this.vy = -this.vy;
-
-        // Mouse interaction
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        
-        if (distance < mouseRadius) {
-          const forceDirectionX = dx / distance;
-          const forceDirectionY = dy / distance;
-          const force = (mouseRadius - distance) / mouseRadius;
-          const directionX = forceDirectionX * force * this.density;
-          const directionY = forceDirectionY * force * this.density;
-
-          if (distance < mouseRadius) {
-             this.x -= directionX;
-             this.y -= directionY;
-          }
-        }
-      }
-
-      draw() {
-        if (!ctx) return;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        
-        if (isDarkMode) {
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-        } else {
-          ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
-        }
-        
-        ctx.fill();
-      }
+      hue: number; // 0 = cyan, 1 = purple
     }
+
+    let particles: Particle[] = [];
+    
+    const connectionDistance = 150;
+    const mouseRadius = 150;
+    
+    let mouse = { x: -1000, y: -1000 };
+    let width = 0;
+    let height = 0;
+
+    const createParticle = (): Particle => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      size: Math.random() * 2 + 1,
+      density: (Math.random() * 30) + 1,
+      hue: Math.random() > 0.5 ? 0 : 1,
+    });
 
     const initParticles = () => {
       particles = [];
       const area = width * height;
-      const count = Math.floor(area / 15000); // 1 particle per 15000px^2
+      const count = Math.floor(area / 15000);
       
       for (let i = 0; i < count; i++) {
-        particles.push(new Particle());
+        particles.push(createParticle());
       }
     };
 
@@ -133,9 +71,13 @@ const BackgroundAnimation = () => {
 
           if (distance < connectionDistance) {
             const opacityValue = 1 - (distance / connectionDistance);
-            ctx.strokeStyle = isDarkMode 
-                ? `rgba(255, 255, 255, ${opacityValue * 0.2})` 
-                : `rgba(0, 0, 0, ${opacityValue * 0.1})`;
+            // Use cyan-purple gradient for connections
+            const isCyanPair = particles[a].hue === 0 || particles[b].hue === 0;
+            if (isCyanPair) {
+              ctx.strokeStyle = `rgba(0, 229, 255, ${opacityValue * 0.15})`;
+            } else {
+              ctx.strokeStyle = `rgba(168, 85, 247, ${opacityValue * 0.15})`;
+            }
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
@@ -146,8 +88,36 @@ const BackgroundAnimation = () => {
       }
 
       particles.forEach(particle => {
-        particle.update();
-        particle.draw();
+        // Move
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        // Bounce off edges
+        if (particle.x < 0 || particle.x > width) particle.vx = -particle.vx;
+        if (particle.y < 0 || particle.y > height) particle.vy = -particle.vy;
+
+        // Mouse interaction
+        const dx = mouse.x - particle.x;
+        const dy = mouse.y - particle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < mouseRadius) {
+          const forceDirectionX = dx / distance;
+          const forceDirectionY = dy / distance;
+          const force = (mouseRadius - distance) / mouseRadius;
+          particle.x -= forceDirectionX * force * particle.density;
+          particle.y -= forceDirectionY * force * particle.density;
+        }
+
+        // Draw particle
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        if (particle.hue === 0) {
+          ctx.fillStyle = 'rgba(0, 229, 255, 0.5)';
+        } else {
+          ctx.fillStyle = 'rgba(168, 85, 247, 0.5)';
+        }
+        ctx.fill();
       });
       
       animationFrameId = requestAnimationFrame(animate);
@@ -161,7 +131,7 @@ const BackgroundAnimation = () => {
     const handleMouseLeave = () => {
       mouse.x = -1000;
       mouse.y = -1000;
-    }
+    };
 
     window.addEventListener('resize', resize);
     window.addEventListener('mousemove', handleMouseMove);
@@ -175,7 +145,6 @@ const BackgroundAnimation = () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseout', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
-      observer.disconnect();
     };
   }, []);
 

@@ -7,9 +7,10 @@ import ScrollProgress from './components/common/ScrollProgress';
 import Home from './pages/Home';
 import Culinary from './pages/Culinary';
 import Service from './pages/Service';
-import React from 'react';
+import LabTools from './pages/LabTools';
+import type { PageTransitionProps } from './types';
 
-const PageTransition = ({ children }) => {
+const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
   return (
     <motion.div
       initial={{ opacity: 0, x: -20 }}
@@ -31,6 +32,7 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
         <Route path="/culinary" element={<PageTransition><Culinary /></PageTransition>} />
         <Route path="/service" element={<PageTransition><Service /></PageTransition>} />
+        <Route path="/labtools" element={<PageTransition><LabTools /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );
@@ -41,7 +43,7 @@ function App() {
     <Router>
       <ScrollProgress />
       <BackgroundAnimation />
-      <div className="flex flex-col min-h-screen bg-transparent font-sans text-zinc-900 dark:text-white transition-colors duration-300 relative z-10">
+      <div className="flex flex-col min-h-screen bg-transparent font-sans text-white transition-colors duration-300 relative z-10">
         <Navbar />
         <main className="flex-grow pt-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full">
           <AnimatedRoutes />

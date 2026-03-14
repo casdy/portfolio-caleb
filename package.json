@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cronstrue": "^3.13.0",
     "framer-motion": "^12.29.2",
     "lucide-react": "^0.563.0",
     "react": "^18.3.1",
@@ -25,6 +27,7 @@
     "@eslint/js": "^9.13.0",
     "@tailwindcss/postcss": "^4.1.18",
     "@tailwindcss/typography": "^0.5.19",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^25.2.3",
     "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",
@@ -36,6 +39,7 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.11.0",
     "postcss": "^8.5.6",
+    "puppeteer": "^24.39.1",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
     "vite": "^7.3.1"

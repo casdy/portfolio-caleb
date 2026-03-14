@@ -1,16 +1,15 @@
-# CalebOjukwu.ca
+# Caleblabs.pro
 
 A modern, secure TypeScript portfolio website showcasing my tech, culinary, and service expertise. Built with React, featuring dynamic animations, dark mode support, and GitHub integration.
 
 ## ✨ Features
 
-- **TypeScript**: Fully typed codebase for enhanced reliability and developer experience
-- **Dynamic Logo**: Context-aware branding that adapts to each section (.Tech / .Culinary / .Service)
-- **GitHub Integration**: Automatic project showcase with language statistics and skill badges
-- **Interactive Animations**: Particle constellation background that responds to mouse movement
-- **Dark Mode Support**: Seamless theme switching with persistent preferences
-- **Project Modals**: Detailed README rendering with markdown support and HTML sanitization
-- **Security-Hardened**: Content Security Policy, XSS protection, and automated vulnerability scanning
+- **Secure Pre-Build Architecture**: Projects and statistics are fetched securely at build time, preventing API key leakage.
+- **FAQ Chatbot**: A context-aware assistant powered by Fuse.js for fuzzy retrieval.
+- **Cyber-Skeleton UI**: Custom-themed loading states for a smooth, high-performance feel.
+- **TypeScript**: Fully typed codebase for enhanced reliability and developer experience.
+- **Dynamic Logo**: Context-aware branding that adapts to each section (.Tech / .Culinary / .Service).
+- **GitHub & Vercel Integration**: Automatic project showcase with language statistics and live deployment links.
 
 ## 🚀 Tech Stack
 
@@ -34,12 +33,13 @@ A modern, secure TypeScript portfolio website showcasing my tech, culinary, and 
 - **rehype-raw** - HTML in markdown
 - **remark-gfm** - GitHub Flavored Markdown support
 
-### Security
+### Security & Pipeline
 
-- Content Security Policy (CSP) headers
-- HTML sanitization via rehype-sanitize
-- Automated npm audit in CI/CD
-- Strict TypeScript compiler settings
+- **Secure Node.js Pre-Build Script**: Fetches data from GitHub and Vercel.
+- **Pre-Generated JSON**: Instant project loading with zero client-side API latency.
+- **Content Security Policy (CSP)**: Restricts script execution to trusted sources.
+- **HTML Sanitization**: Protection on markdown rendering via `rehype-sanitize`.
+- **Strict TypeScript**: Compiler settings for high-confidence code.
 
 ## 📦 Installation
 
@@ -52,22 +52,30 @@ cd portfolio-caleb
 
 # Install dependencies
 npm install
+
+# Setup Environment Variables
+# Create a .env file with your VERCEL_API_TOKEN and GITHUB_TOKEN
+cp .env.example .env
 ```
 
 ## 🛠️ Development
 
-```bash
-# Start development server
+# Start development server (trigger pre-fetch)
+
 npm run dev
 
-# Build for production
+# Build for production (trigger pre-fetch)
+
 npm run build
 
 # Preview production build
+
 npm run preview
 
-# Type check
-npx tsc --noEmit
+# Manual Project Data Fetch
+
+npm run predev
+
 ```
 
 The development server will start at `http://localhost:5173`.
@@ -75,30 +83,23 @@ The development server will start at `http://localhost:5173`.
 ## 🏗️ Project Structure
 
 ```
-portfolio-caleb/
+
+├── scripts/ # Secure Build Scripts (fetch-projects.ts)
 ├── src/
-│   ├── assets/              # Static assets (images, resumes)
-│   ├── bot/                 # FAQ Chatbot engine (upcoming)
-│   ├── components/
-│   │   ├── common/          # Reusable components (Logo, Navbar, Modal, etc.)
-│   │   ├── home/            # Home page components
-│   │   ├── culinary/        # Culinary section components
-│   │   ├── service/         # Service section components
-│   │   └── tools/           # LabTools utilities
-│   ├── hooks/               # Custom React hooks
-│   ├── lib/
-│   │   └── api/             # API clients (GitHub, Vercel)
-│   ├── pages/               # Route pages (Home, Culinary, Service, LabTools)
-│   ├── store/               # Global state management (Zustand)
-│   ├── types/               # TypeScript definitions
-│   └── App.tsx              # Main application component
-├── public/
-│   ├── favicon.svg          # Portfolio favicon
-│   └── previews/            # Project site previews
-├── .github/                 # CI/CD workflows
-├── scripts/                 # Utility scripts (preview capture)
-└── security_report.md       # NIST CSF 2.0 security audit
-```
+│ ├── bot/ # FAQ Chatbot (Context-aware logic)
+│ ├── components/
+│ │ ├── common/ # Logo, Navbar, Modal, etc.
+│ │ ├── home/ # Node Grid, Hero, Projects
+│ │ └── ui/ # Skeleton UI system
+│ ├── data/ # Static & Generated Data (generated-projects.json)
+│ ├── pages/ # Route pages
+│ ├── store/ # Global state (Zustand)
+│ ├── types/ # TypeScript definitions
+│ └── App.tsx # Main application root
+├── .env # Private tokens (ignored by git)
+├── security_report.md # NIST CSF 2.0 security audit
+
+````
 
 ## 🔒 Security
 
@@ -114,13 +115,15 @@ See [security_report.md](./security_report.md) for the full security audit.
 
 ## 🎨 Customization
 
-### GitHub Integration
+### Secure Pre-Build Integration
 
-Update the GitHub username in `src/hooks/useGitHubRepos.ts`:
+Update the credentials in your local `.env` file. Do NOT use the `VITE_` prefix to ensure keys remain strictly backend-only.
 
-```typescript
-const GITHUB_USERNAME = "your-username-here";
-```
+```bash
+GITHUB_TOKEN=your_token
+VERCEL_API_TOKEN=your_token
+VERCEL_TEAM_ID=your_team_id
+````
 
 ### Dynamic Logo
 

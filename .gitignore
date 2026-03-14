@@ -20,6 +20,9 @@ dist-ssr
 .env.production.local
 *.local
 
+# Generated Data
+src/data/generated-projects.json
+
 # Editor/OS Files
 .vscode/*
 !.vscode/extensions.json

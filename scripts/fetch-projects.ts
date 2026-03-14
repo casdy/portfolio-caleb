@@ -5,8 +5,8 @@ import fetch from 'node-fetch';
 
 dotenv.config();
 
-const VERCEL_API_TOKEN = process.env.VERCEL_API_TOKEN;
-const VERCEL_TEAM_ID = process.env.VERCEL_TEAM_ID;
+const VERCEL_API_TOKEN = process.env.VC_API_TOKEN;
+const VERCEL_TEAM_ID = process.env.VC_TEAM_ID;
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_USERNAME = 'casdy';
 

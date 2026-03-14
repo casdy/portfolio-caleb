@@ -159,7 +159,7 @@ const LabTools = () => {
           <h1 className="text-4xl md:text-6xl font-display font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
             UTILITY NEXUS
           </h1>
-          <p className="text-zinc-500 dark:text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto px-4">
+          <p className="text-zinc-300 dark:text-zinc-300 text-lg md:text-xl max-w-2xl mx-auto px-4">
             A high-performance toolkit for modern developers. 
             Execution-grade utilities, zero latency, 100% client-side.
           </p>
@@ -193,7 +193,7 @@ const LabTools = () => {
               <h3 className="text-xl font-display font-bold mb-2 group-hover:text-cyan-400 transition-colors">
                 {tool.title}
               </h3>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              <p className="text-sm text-zinc-400 dark:text-zinc-300 leading-relaxed">
                 {tool.description}
               </p>
             </div>

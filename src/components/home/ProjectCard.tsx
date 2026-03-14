@@ -34,7 +34,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onDetails }) => {
                     </span>
                 </div>
 
-                <p className="text-zinc-400 mb-6 line-clamp-3 text-sm">
+                <p className="text-zinc-300 mb-6 line-clamp-3 text-sm">
                     {project.description || 'No description provided.'}
                 </p>
 
@@ -53,7 +53,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onDetails }) => {
                         </div>
                         <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
                             {project.languages.slice(0, 4).map((lang) => (
-                                <div key={lang.name} className="flex items-center gap-1.5 text-xs text-zinc-400">
+                                <div key={lang.name} className="flex items-center gap-1.5 text-xs text-zinc-300">
                                     <span className="h-2 w-2 rounded-full" style={{ backgroundColor: lang.color }}></span>
                                     <span>{lang.name} {Math.round(lang.percent)}%</span>
                                 </div>

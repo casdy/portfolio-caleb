@@ -1,13 +1,19 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React, { Suspense } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import BackgroundAnimation from './components/common/BackgroundAnimation';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import ScrollProgress from './components/common/ScrollProgress';
-import Home from './pages/Home';
-import Culinary from './pages/Culinary';
-import Service from './pages/Service';
-import LabTools from './pages/LabTools';
+import { GlobalChatbot } from './components/GlobalChatbot';
+import { SkeletonModal } from './components/ui/Skeleton';
+
+// Lazy load pages for better performance
+const Home = React.lazy(() => import('./pages/Home'));
+const Culinary = React.lazy(() => import('./pages/Culinary'));
+const Service = React.lazy(() => import('./pages/Service'));
+const LabTools = React.lazy(() => import('./pages/LabTools'));
+
 import type { PageTransitionProps } from './types';
 
 const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
@@ -29,10 +35,10 @@ const AnimatedRoutes = () => {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-        <Route path="/culinary" element={<PageTransition><Culinary /></PageTransition>} />
-        <Route path="/service" element={<PageTransition><Service /></PageTransition>} />
-        <Route path="/labtools" element={<PageTransition><LabTools /></PageTransition>} />
+        <Route path="/" element={<PageTransition><Suspense fallback={<SkeletonModal />}><Home /></Suspense></PageTransition>} />
+        <Route path="/culinary" element={<PageTransition><Suspense fallback={<SkeletonModal />}><Culinary /></Suspense></PageTransition>} />
+        <Route path="/service" element={<PageTransition><Suspense fallback={<SkeletonModal />}><Service /></Suspense></PageTransition>} />
+        <Route path="/labtools" element={<PageTransition><Suspense fallback={<SkeletonModal />}><LabTools /></Suspense></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );
@@ -49,6 +55,7 @@ function App() {
           <AnimatedRoutes />
         </main>
         <Footer />
+        <GlobalChatbot />
       </div>
     </Router>
   );

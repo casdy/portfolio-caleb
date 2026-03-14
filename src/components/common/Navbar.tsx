@@ -58,7 +58,7 @@ const Navbar = () => {
                                 <span className={`relative z-10 flex items-center gap-2 transition-colors duration-200 font-medium ${
                                     isActive(link.path)
                                         ? 'text-cyan-600 dark:text-cyan-400'
-                                        : 'text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-200'
+                                        : 'text-zinc-500 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-zinc-200'
                                 }`}>
                                     <link.icon size={16} />
                                     {link.name}

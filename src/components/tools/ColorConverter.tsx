@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import useClipboard from '../../hooks/useClipboard';
 import { Copy, Check, Palette } from 'lucide-react';
 

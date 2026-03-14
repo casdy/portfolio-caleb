@@ -57,7 +57,7 @@ const Hero = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 0.8 }}
-                    className="mt-4 max-w-2xl mx-auto text-xl text-zinc-300"
+                    className="mt-4 max-w-2xl mx-auto text-xl text-zinc-200"
                 >
                     Hi, I'm Caleb Ojukwu. I bridge the gap between complex problems and elegant solutions.
                     From full-stack applications to data-driven tools, I build with purpose and precision.

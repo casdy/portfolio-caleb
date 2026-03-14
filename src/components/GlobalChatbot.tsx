@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageSquare, X, Send, Terminal } from 'lucide-react';
+import { MessageSquare, X, Send, Terminal, Clock } from 'lucide-react';
 import { useChatStore } from '../store/chatStore';
 import { useChatbot } from '../bot/useChatbot';
 
@@ -12,7 +12,14 @@ export const GlobalChatbot: React.FC = () => {
   
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Update real-time clock every second
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   // Auto-scroll to the bottom when new messages arrive
   useEffect(() => {
@@ -54,9 +61,17 @@ export const GlobalChatbot: React.FC = () => {
           >
             {/* Header */}
             <div className="bg-slate-900 border-b border-cyan-500/30 p-4 flex justify-between items-center">
-              <div className="flex items-center gap-2 text-cyan-400 font-mono text-sm font-bold tracking-wider">
-                <Terminal size={18} />
-                <span>LABS_ASSISTANT_OS</span>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-2 text-cyan-400 font-mono text-sm font-bold tracking-wider">
+                  <Terminal size={18} />
+                  <span>LABS_ASSISTANT_OS</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-slate-500 font-mono text-[9px] mt-0.5">
+                  <Clock size={10} className="text-cyan-500/50" />
+                  <span>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}</span>
+                  <span className="text-cyan-500/30">|</span>
+                  <span className="text-emerald-500/70">STABLE</span>
+                </div>
               </div>
               <button 
                 onClick={toggleChat}
@@ -84,7 +99,7 @@ export const GlobalChatbot: React.FC = () => {
                     {msg.text}
                   </div>
                   <span className="text-[10px] text-zinc-300 mt-1 px-1">
-                    {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
                   </span>
                 </div>
               ))}

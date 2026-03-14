@@ -117,13 +117,13 @@ See [security_report.md](./security_report.md) for the full security audit.
 
 ### Secure Pre-Build Integration
 
-Update the credentials in your local `.env` file. Do NOT use the `VITE_` prefix to ensure keys remain strictly backend-only.
+Update the credentials in your local `.env.local` file. Do NOT use the `VITE_` prefix to ensure keys remain strictly backend-only.
 
 ```bash
-GITHUB_TOKEN=your_token
-VERCEL_API_TOKEN=your_token
-VERCEL_TEAM_ID=your_team_id
-````
+GITHUB_ACCESS_TOKEN=your_token
+VC_ACCESS_TOKEN=your_token
+VC_TEAM_ID=your_team_id
+```
 
 ### Dynamic Logo
 

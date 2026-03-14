@@ -3,15 +3,17 @@ import path from 'path';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
 
+// Load .env and .env.local
 dotenv.config();
+dotenv.config({ path: '.env.local' });
 
-const VERCEL_API_TOKEN = process.env.VC_API_TOKEN;
+const VERCEL_API_TOKEN = process.env.VC_ACCESS_TOKEN;
 const VERCEL_TEAM_ID = process.env.VC_TEAM_ID;
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_TOKEN = process.env.GITHUB_ACCESS_TOKEN;
 const GITHUB_USERNAME = 'casdy';
 
 if (!VERCEL_API_TOKEN || !GITHUB_TOKEN) {
-  console.error('Error: VERCEL_API_TOKEN and GITHUB_TOKEN must be defined in .env');
+  console.error('Error: VC_ACCESS_TOKEN and GITHUB_ACCESS_TOKEN must be defined in .env or .env.local');
   process.exit(1);
 }
 

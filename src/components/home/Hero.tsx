@@ -76,7 +76,7 @@ const Hero = () => {
                         label="Download Resume"
                         filePath="/assets/resumes/resume_tech.pdf"
                         variant="outline"
-                        className="text-white border-white hover:bg-white/10"
+                        className="text-zinc-700 dark:text-white border-zinc-300 dark:border-white hover:bg-zinc-100 dark:hover:bg-white/10"
                     />
                     <div className="flex gap-4 ml-0 sm:ml-4 mt-4 sm:mt-0 border-l-0 sm:border-l pl-0 sm:pl-4 border-zinc-200 dark:border-zinc-700">
                         <a href="https://github.com/casdy" target="_blank" rel="noopener noreferrer" className="text-zinc-400 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">

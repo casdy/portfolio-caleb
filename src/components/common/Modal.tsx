@@ -70,13 +70,13 @@ const Modal: React.FC<ProjectModalProps> = ({ onClose, project, content }) => {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: 10 }}
                     transition={{ duration: 0.15, ease: 'easeOut' }}
-                    className={`relative z-50 w-full max-w-6xl max-h-[92vh] rounded-2xl overflow-hidden shadow-2xl border ${borderClass} bg-slate-950/95 backdrop-blur-xl flex flex-col`}
+                    className={`relative z-50 w-full max-w-6xl max-h-[92vh] rounded-2xl overflow-hidden shadow-2xl border ${borderClass} bg-white dark:bg-slate-950/95 backdrop-blur-xl flex flex-col`}
                 >
                     {/* Header */}
-                    <div className="flex justify-between items-start p-5 border-b border-zinc-800/80 shrink-0">
+                    <div className="flex justify-between items-start p-5 border-b border-zinc-200 dark:border-zinc-800/80 shrink-0">
                         <div className="flex-1 min-w-0 mr-4">
                             <div className="flex items-center gap-3 mb-1">
-                                <h3 className="text-2xl font-bold font-display text-white truncate" id="modal-title">
+                                <h3 className="text-2xl font-bold font-display text-zinc-900 dark:text-white truncate" id="modal-title">
                                     {project.name}
                                 </h3>
                                 <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shrink-0 ${
@@ -88,12 +88,12 @@ const Modal: React.FC<ProjectModalProps> = ({ onClose, project, content }) => {
                                 </span>
                             </div>
                             {project.description && (
-                                <p className="text-zinc-400 text-sm max-w-xl line-clamp-2">{project.description}</p>
+                                <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-xl line-clamp-2">{project.description}</p>
                             )}
                         </div>
                         <button
                             onClick={onClose}
-                            className="p-2 rounded-lg bg-zinc-800/50 text-zinc-400 hover:text-white hover:bg-zinc-700/50 transition-colors shrink-0"
+                            className="p-2 rounded-lg bg-zinc-100 dark:bg-zinc-800/50 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-zinc-700/50 transition-colors shrink-0"
                         >
                             <span className="sr-only">Close</span>
                             <X size={20} />
@@ -102,7 +102,7 @@ const Modal: React.FC<ProjectModalProps> = ({ onClose, project, content }) => {
 
                     {/* Tab bar */}
                     {hasPreview && (
-                        <div className="flex border-b border-zinc-800/60 bg-zinc-950/80 shrink-0">
+                        <div className="flex border-b border-zinc-200 dark:border-zinc-800/60 bg-zinc-50/80 dark:bg-zinc-950/80 shrink-0">
                             <button
                                 onClick={() => setActiveTab('preview')}
                                 className={`flex items-center gap-2 px-5 py-2.5 text-sm font-medium transition-colors border-b-2 ${
@@ -137,7 +137,7 @@ const Modal: React.FC<ProjectModalProps> = ({ onClose, project, content }) => {
                                 {!screenshotLoaded && !screenshotError && (
                                     <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 z-10">
                                         <div className={`animate-spin rounded-full h-10 w-10 border-b-2 ${spinnerColor}`} />
-                                        <span className="text-zinc-500 font-mono text-sm">Generating preview...</span>
+                                        <span className="text-zinc-400 dark:text-zinc-500 font-mono text-sm">Generating preview...</span>
                                     </div>
                                 )}
 
@@ -174,7 +174,7 @@ const Modal: React.FC<ProjectModalProps> = ({ onClose, project, content }) => {
                         ) : (
                             /* README markdown */
                             <div className="overflow-y-auto max-h-[calc(92vh-180px)]">
-                                <div className="p-6 prose prose-invert prose-zinc max-w-none">
+                                <div className="p-6 prose dark:prose-invert prose-zinc max-w-none">
                                     {content ? (
                                         <motion.div
                                             initial={{ opacity: 0 }}
@@ -189,7 +189,7 @@ const Modal: React.FC<ProjectModalProps> = ({ onClose, project, content }) => {
                                         <div className="flex justify-center items-center h-32">
                                             <div className="flex flex-col items-center gap-3">
                                                 <div className={`animate-spin rounded-full h-8 w-8 border-b-2 ${spinnerColor}`} />
-                                                <span className="text-zinc-500 font-mono text-xs">Loading README...</span>
+                                                <span className="text-zinc-400 dark:text-zinc-500 font-mono text-xs">Loading README...</span>
                                             </div>
                                         </div>
                                     )}
@@ -199,22 +199,22 @@ const Modal: React.FC<ProjectModalProps> = ({ onClose, project, content }) => {
                     </div>
 
                     {/* Footer */}
-                    <div className="px-5 py-3 border-t border-zinc-800/80 flex flex-row justify-between items-center bg-zinc-950/50 shrink-0">
+                    <div className="px-5 py-3 border-t border-zinc-200 dark:border-zinc-800/80 flex flex-row justify-between items-center bg-zinc-50/50 dark:bg-zinc-950/50 shrink-0">
                         <button
                             type="button"
-                            className="px-4 py-2 rounded-lg border border-zinc-700 text-sm font-medium text-zinc-300 hover:bg-zinc-800 transition-colors"
+                            className="px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-700 text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                             onClick={onClose}
                         >
                             Close
                         </button>
                         <div className="flex space-x-4">
-                            {previewUrl && (
-                                <a href={previewUrl} target="_blank" rel="noopener noreferrer" className="flex items-center text-cyan-400 hover:text-cyan-300 font-medium text-sm transition-colors">
+                             {previewUrl && (
+                                <a href={previewUrl} target="_blank" rel="noopener noreferrer" className="flex items-center text-cyan-600 dark:text-cyan-400 hover:text-cyan-500 dark:hover:text-cyan-300 font-medium text-sm transition-colors">
                                     <ExternalLink size={16} className="mr-1.5" /> Open App
                                 </a>
                             )}
-                            {project.githubUrl && (
-                                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center text-zinc-300 hover:text-white font-medium text-sm transition-colors">
+                             {project.githubUrl && (
+                                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white font-medium text-sm transition-colors">
                                     <Github size={16} className="mr-1.5" /> Source
                                 </a>
                             )}

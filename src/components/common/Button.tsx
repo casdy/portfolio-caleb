@@ -19,7 +19,7 @@ const Button: React.FC<ButtonProps> = ({
     const variants: Record<string, string> = {
         primary: "bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-blue-600/30 focus:ring-blue-500",
         secondary: "bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 hover:bg-zinc-200 dark:hover:bg-zinc-700 focus:ring-zinc-500",
-        outline: "border-2 border-current text-current hover:bg-zinc-50/10",
+        outline: "border-2 border-current text-current hover:bg-zinc-100/10 dark:hover:bg-zinc-50/10 shadow-sm dark:shadow-none",
         ghost: "text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800",
     };
 

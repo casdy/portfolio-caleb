@@ -31,7 +31,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-5xl md:text-7xl font-bold font-display tracking-tight text-white mb-6"
+                    className="text-5xl md:text-7xl font-bold font-display tracking-tight text-zinc-900 dark:text-white mb-6"
                 >
                     <span className="block mb-2">My Passion is</span>
                     <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-400">
@@ -57,7 +57,7 @@ const Hero = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 0.8 }}
-                    className="mt-4 max-w-2xl mx-auto text-xl text-zinc-200"
+                    className="mt-4 max-w-2xl mx-auto text-xl text-zinc-700 dark:text-zinc-200"
                 >
                     Hi, I'm Caleb Ojukwu. I bridge the gap between complex problems and elegant solutions.
                     From full-stack applications to data-driven tools, I build with purpose and precision.
@@ -78,11 +78,11 @@ const Hero = () => {
                         variant="outline"
                         className="text-white border-white hover:bg-white/10"
                     />
-                    <div className="flex gap-4 ml-0 sm:ml-4 mt-4 sm:mt-0 border-l-0 sm:border-l pl-0 sm:pl-4 border-zinc-700">
-                        <a href="https://github.com/casdy" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-white transition-colors">
+                    <div className="flex gap-4 ml-0 sm:ml-4 mt-4 sm:mt-0 border-l-0 sm:border-l pl-0 sm:pl-4 border-zinc-200 dark:border-zinc-700">
+                        <a href="https://github.com/casdy" target="_blank" rel="noopener noreferrer" className="text-zinc-400 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
                             <Github size={24} />
                         </a>
-                        <a href="https://www.linkedin.com/in/calebojukwu/" target="_blank" rel="noopener noreferrer" className="text-zinc-400 hover:text-cyan-400 transition-colors">
+                        <a href="https://www.linkedin.com/in/calebojukwu/" target="_blank" rel="noopener noreferrer" className="text-zinc-400 dark:text-zinc-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
                             <Linkedin size={24} />
                         </a>
                     </div>

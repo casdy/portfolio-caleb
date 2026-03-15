@@ -23,12 +23,14 @@ const NAME_ALIASES: Record<string, { github: string; display: string }> = {
     'geo-pol':                { github: 'geopol',             display: 'GeoPol' },
     'wedaforecast':           { github: 'weather-app',        display: 'WedaForecast' },
     'password-generator-eng': { github: 'password-generator', display: 'Password Generator' },
+    'calebojukwu':            { github: 'portfolio-caleb',    display: 'Calebojukwu' },
 };
 
 const EXCLUDED_PROJECTS = new Set([
     'earo-invoice',
     'casdy',
     'my-website',
+    'calebojukw',
 ]);
 
 const PREVIEW_IMAGES: Record<string, string> = {

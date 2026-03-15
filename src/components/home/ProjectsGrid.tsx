@@ -30,7 +30,7 @@ const ProjectsGrid = () => {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        className="text-3xl md:text-4xl font-bold font-display text-white mb-4"
+                        className="text-3xl md:text-4xl font-bold font-display text-zinc-900 dark:text-white mb-4"
                     >
                         The Node Grid
                     </motion.h2>
@@ -38,11 +38,11 @@ const ProjectsGrid = () => {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                        className="text-zinc-300 max-w-2xl mx-auto font-mono text-sm"
+                        className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto font-mono text-sm"
                     >
-                        <span className="text-cyan-400">{liveCount} live nodes</span>
+                        <span className="text-cyan-600 dark:text-cyan-400">{liveCount} live nodes</span>
                         {' // '}
-                        <span className="text-purple-400">{archiveCount} archive nodes</span>
+                        <span className="text-purple-600 dark:text-purple-400">{archiveCount} archive nodes</span>
                         {' // connected'}
                     </motion.p>
                 </div>

@@ -145,7 +145,7 @@ const Modal: React.FC<ProjectModalProps> = ({ onClose, project, content }) => {
                                 <img
                                     src={screenshotUrl}
                                     alt={`Preview of ${project.name}`}
-                                    className={`w-full h-full min-h-[65vh] object-cover object-top transition-opacity duration-500 ${screenshotLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                    className={`w-full h-full max-h-[65vh] object-contain transition-opacity duration-500 ${screenshotLoaded ? 'opacity-100' : 'opacity-0'}`}
                                     onLoad={() => setScreenshotLoaded(true)}
                                     onError={() => setScreenshotError(true)}
                                 />

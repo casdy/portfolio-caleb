@@ -72,7 +72,7 @@ const Navbar = () => {
                                 )}
                             </Link>
                         ))}
-                        <div className="pl-4 ml-2 border-l border-zinc-700">
+                        <div className="pl-4 ml-2 border-l border-zinc-200 dark:border-zinc-700">
                             <ThemeToggle />
                         </div>
                     </div>
@@ -82,7 +82,7 @@ const Navbar = () => {
                         <ThemeToggle />
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="text-zinc-300 hover:text-white focus:outline-none"
+                            className="text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white focus:outline-none"
                         >
                             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>

@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import React, { Suspense } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import BackgroundAnimation from './components/common/BackgroundAnimation';
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import ScrollProgress from './components/common/ScrollProgress';
 import { GlobalChatbot } from './components/GlobalChatbot';
-import { SkeletonModal } from './components/ui/Skeleton';
+import { PageSplash } from './components/ui/Skeleton';
 
 // Lazy load pages for better performance
 const Home = React.lazy(() => import('./pages/Home'));
@@ -31,16 +31,58 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+  const [navigating, setNavigating] = useState(false);
+  const [currentType, setCurrentType] = useState<'tech' | 'culinary' | 'service' | 'labtools'>('tech');
+
+  // Map path to splash type
+  const getPathType = (path: string): 'tech' | 'culinary' | 'service' | 'labtools' => {
+    if (path === '/culinary') return 'culinary';
+    if (path === '/service') return 'service';
+    if (path === '/labtools') return 'labtools';
+    return 'tech';
+  };
+
+  useEffect(() => {
+    const type = getPathType(location.pathname);
+    setCurrentType(type);
+    
+    // Trigger splash
+    setNavigating(true);
+    
+    // Minimum splash duration for visual impact (1500ms)
+    const timer = setTimeout(() => {
+      setNavigating(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<PageTransition><Suspense fallback={<SkeletonModal />}><Home /></Suspense></PageTransition>} />
-        <Route path="/culinary" element={<PageTransition><Suspense fallback={<SkeletonModal />}><Culinary /></Suspense></PageTransition>} />
-        <Route path="/service" element={<PageTransition><Suspense fallback={<SkeletonModal />}><Service /></Suspense></PageTransition>} />
-        <Route path="/labtools" element={<PageTransition><Suspense fallback={<SkeletonModal />}><LabTools /></Suspense></PageTransition>} />
-      </Routes>
-    </AnimatePresence>
+    <>
+      <AnimatePresence mode="wait">
+        {navigating && (
+          <motion.div
+            key="page-splash-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[100]"
+          >
+            <PageSplash type={currentType} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<PageTransition><Suspense fallback={null}><Home /></Suspense></PageTransition>} />
+          <Route path="/culinary" element={<PageTransition><Suspense fallback={null}><Culinary /></Suspense></PageTransition>} />
+          <Route path="/service" element={<PageTransition><Suspense fallback={null}><Service /></Suspense></PageTransition>} />
+          <Route path="/labtools" element={<PageTransition><Suspense fallback={null}><LabTools /></Suspense></PageTransition>} />
+        </Routes>
+      </AnimatePresence>
+    </>
   );
 };
 

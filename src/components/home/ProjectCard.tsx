@@ -23,6 +23,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onDetails }) => {
             transition={{ type: "spring", stiffness: 300 }}
             className={`bg-white dark:bg-zinc-900/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col h-full border border-zinc-200 dark:border-zinc-800 ${glowBorder}`}
         >
+            {/* Preview Image */}
+            {project.previewImage && (
+                <div className="w-full h-40 overflow-hidden">
+                    <img 
+                        src={project.previewImage} 
+                        alt={`${project.name} preview`}
+                        className="w-full h-full object-cover object-top"
+                        loading="lazy"
+                    />
+                </div>
+            )}
             <div className="p-6 flex-grow">
                 <div className="flex justify-between items-start mb-4">
                     <h3 className="text-xl font-bold font-display text-zinc-900 dark:text-white">

@@ -38,6 +38,7 @@ const PREVIEW_IMAGES: Record<string, string> = {
     'geopol':                 '/previews/geopol.png',
     'planr':                  '/previews/planr.png',
     'password-generator-eng': '/previews/password-generator-eng.png',
+    'calebojukwu':            '/previews/calebojukwu.png',
 };
 
 // ─── Helpers ported from useGitHubRepos.ts ───────────────────────────────────

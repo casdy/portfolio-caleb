@@ -7,6 +7,7 @@ import Footer from './components/common/Footer';
 import ScrollProgress from './components/common/ScrollProgress';
 import { GlobalChatbot } from './components/GlobalChatbot';
 import { PageSplash } from './components/ui/Skeleton';
+import { useNavigationStore } from './store/navigationStore';
 
 // Lazy load pages for better performance
 const Home = React.lazy(() => import('./pages/Home'));
@@ -48,13 +49,30 @@ const AnimatedRoutes = () => {
     
     // Trigger splash
     setNavigating(true);
+
+    // Update Logo label and tab title mid-splash (500ms in)
+    const labelTimer = setTimeout(() => {
+      const titles: Record<string, string> = {
+        '/': 'Caleb Labs | Tech Nexus',
+        '/culinary': 'Caleb Labs | Culinary',
+        '/service': 'Caleb Labs | Service',
+        '/labtools': 'Caleb Labs | LabTools',
+      };
+      document.title = titles[location.pathname] || 'Caleb Labs';
+      // Update shared navigation store so Logo picks it up during splash
+      const { setSection } = useNavigationStore.getState();
+      setSection(location.pathname);
+    }, 500);
     
-    // Minimum splash duration for visual impact (1500ms)
+    // End splash after 1500ms
     const timer = setTimeout(() => {
       setNavigating(false);
     }, 1500);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(labelTimer);
+      clearTimeout(timer);
+    };
   }, [location.pathname]);
 
   return (
@@ -91,7 +109,7 @@ function App() {
     <Router>
       <ScrollProgress />
       <BackgroundAnimation />
-      <div className="flex flex-col min-h-screen bg-transparent font-sans text-white transition-colors duration-300 relative z-10">
+      <div className="flex flex-col min-h-screen bg-transparent font-sans text-zinc-900 dark:text-white relative z-10">
         <Navbar />
         <main className="flex-grow pt-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full">
           <AnimatedRoutes />

@@ -68,7 +68,7 @@ export const PageSplash: React.FC<PageSplashProps> = ({ type }) => {
   const Icon = config.icon;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-white dark:bg-slate-950 transition-colors duration-300">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-white dark:bg-slate-950">
       <div className="relative flex flex-col items-center">
         {/* Ambient Glow */}
         <div className={`absolute -inset-20 blur-[100px] rounded-full opacity-40 dark:opacity-50 animate-pulse ${config.glow}`} />

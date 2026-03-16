@@ -14,8 +14,9 @@ export const useChatStore = create<ChatState>((set) => ({
   messages: [{
     id: 'welcome-msg',
     sender: 'bot',
-    text: "System Online. Welcome to Caleb Labs. Ask me anything about Caleb's background!",
-    timestamp: new Date()
+    text: "System Online. Welcome to Caleb Labs! Pick a question below or ask me anything about Caleb's background 👇",
+    timestamp: new Date(),
+    suggestions: ["Who is Caleb?", "What's your tech stack?", "What is LABTOOLS?"]
   }],
   toggleChat: () => set((state) => ({ isOpen: !state.isOpen })),
   addMessage: (msg) => set((state) => ({

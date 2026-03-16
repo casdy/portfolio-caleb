@@ -7,7 +7,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-zinc-50 dark:bg-slate-950 border-t border-zinc-200 dark:border-zinc-800/50 py-12 relative overflow-hidden transition-colors duration-300">
+        <footer className="bg-white/80 dark:bg-transparent border-t border-zinc-200 dark:border-zinc-800/50 py-12 relative overflow-hidden">
             {/* Gradient accent line */}
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"></div>
 

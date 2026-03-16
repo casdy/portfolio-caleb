@@ -5,6 +5,7 @@ export interface FAQItem {
   question: string;
   answer: string;
   routeContext: string[]; // e.g., ["global"], ["/"], ["/culinary"]
+  followUpIds?: string[]; // IDs of related FAQ items to suggest
 }
 
 export interface ChatMessage {
@@ -12,4 +13,5 @@ export interface ChatMessage {
   sender: 'user' | 'bot';
   text: string;
   timestamp: Date;
+  suggestions?: string[]; // Follow-up FAQ question suggestions
 }

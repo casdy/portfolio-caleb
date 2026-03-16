@@ -9,8 +9,11 @@ lerna-debug.log*
 
 # Dependencies
 node_modules
+
+# Build Output
 dist
 dist-ssr
+*.tsbuildinfo
 
 # Environment Variables
 .env
@@ -35,8 +38,16 @@ src/data/generated-projects.json
 *.sw?
 Thumbs.db
 
-# Misc
+# Compiled Config
+vite.config.js
+vite.config.d.ts
+
+# Test & Lint Cache
 .eslintcache
 .stylelintcache
 coverage
 .nyc_output
+
+# AI Agent Context
+.agent/
+.gemini/

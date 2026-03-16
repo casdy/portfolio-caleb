@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
 import type { LogoProps } from '../../types';
+import { useNavigationStore } from '../../store/navigationStore';
 
 const Logo: React.FC<LogoProps> = ({ className = "" }) => {
-    const location = useLocation();
+    const currentSection = useNavigationStore((s) => s.currentSection);
     
-    // Determine subtext based on current path
-    let subText = "Ojukwu";
-    if (location.pathname === '/culinary') subText = ".Culinary";
-    else if (location.pathname === '/service') subText = ".Service";
+    // Determine subtext based on navigation store (updated mid-splash)
+    let subText = ".TECH";
+    if (currentSection === '/culinary') subText = ".CULINARY";
+    else if (currentSection === '/service') subText = ".SERVICE";
+    else if (currentSection === '/labtools') subText = ".LABTOOLS";
 
     return (
         <motion.div 

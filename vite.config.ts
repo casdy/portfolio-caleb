@@ -7,6 +7,13 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      include: ['src/**/*.test.{ts,tsx}'],
+      pool: 'threads',
+      testTimeout: 15000,
+    },
     server: {
       proxy: {
         '/api/vercel': {

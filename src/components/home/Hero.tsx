@@ -6,7 +6,7 @@ import { TypeAnimation } from 'react-type-animation';
 
 const Hero = () => {
     return (
-        <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden bg-transparent transition-colors duration-300">
+        <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden bg-transparent">
             {/* Background orbs */}
             <div className="absolute inset-0 z-0 select-none pointer-events-none">
                 <motion.div

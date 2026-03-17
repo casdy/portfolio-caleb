@@ -15,7 +15,7 @@ const Culinary = () => {
                     <div className="mt-8">
                         <ResumeDownloader
                             label="Download Culinary Resume"
-                            filePath="/assets/resumes/resume_culinary.pdf"
+                            sector="Culinary"
                             variant="outline"
                             className="text-orange-900 dark:text-white border-orange-900 dark:border-white hover:bg-orange-900 dark:hover:bg-white hover:text-white dark:hover:text-orange-950"
                         />

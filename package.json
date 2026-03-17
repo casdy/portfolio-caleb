@@ -13,6 +13,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.99.2",
     "bcryptjs": "^3.0.3",
     "cronstrue": "^3.13.0",
     "framer-motion": "^12.29.2",

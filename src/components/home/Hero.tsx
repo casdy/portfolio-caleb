@@ -74,7 +74,7 @@ const Hero = () => {
                     </Button>
                     <ResumeDownloader
                         label="Download Resume"
-                        filePath="/assets/resumes/resume_tech.pdf"
+                        sector="Tech"
                         variant="outline"
                         className="text-zinc-700 dark:text-white border-zinc-300 dark:border-white hover:bg-zinc-100 dark:hover:bg-white/10"
                     />

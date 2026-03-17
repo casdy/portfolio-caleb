@@ -1,6 +1,6 @@
 # Caleb Labs — Developer Portfolio
 
-A premium, multi-sector portfolio showcasing tech, culinary, and client-service expertise. Built with React 18, TypeScript, and Tailwind CSS 4, featuring an intelligent FAQ chatbot, 10 developer utilities, deep-space UI animations, and secure pre-build GitHub/Vercel integration.
+A premium, multi-sector portfolio showcasing tech, culinary, and client-service expertise. Built with React 18, TypeScript, and Tailwind CSS 4, featuring a Supabase-powered backend, a private Chrome Extension CMS, an intelligent FAQ chatbot, 10 developer utilities, and deep-space UI animations.
 
 **Live**: [caleblabs.pro](https://caleblabs.pro)
 
@@ -16,13 +16,16 @@ A premium, multi-sector portfolio showcasing tech, culinary, and client-service 
 | **Instant Theme Toggle** | Shared zustand store syncs dark/light instantly across all components including the chatbot |
 | **Dynamic Branding** | Logo label (`.TECH` / `.CULINARY` / `.SERVICE` / `.LABTOOLS`) and browser tab title switch mid-splash per route |
 | **Node Grid** | Auto-populated project cards from GitHub + Vercel with live iframe previews and README modals |
-| **Secure Pre-Build** | API keys never reach the client — data fetched at build time via Node.js scripts |
+| **Private CMS** | Custom Chrome Extension built with Vite + React for remote, authenticated portfolio management |
+| **Node Grid** | Auto-populated project cards from GitHub + Vercel with live iframe previews and README modals |
+| **Supabase Backend** | Secure, real-time fetching from Supabase Postgres and Storage |
 
 ## 🚀 Tech Stack
 
 | Layer | Technologies |
 |---|---|
 | **Core** | React 18, TypeScript, Vite 7, React Router 7 |
+| **Backend** | Supabase (Postgres, Storage, Auth) |
 | **Styling** | Tailwind CSS 4, `@tailwindcss/typography` |
 | **Animation** | Framer Motion, HTML5 Canvas |
 | **State** | Zustand (theme, chat, navigation) |
@@ -44,6 +47,7 @@ npm install
 # Environment setup
 cp .env.example .env.local
 # Add your GITHUB_ACCESS_TOKEN, VC_ACCESS_TOKEN, VC_TEAM_ID
+# Add VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY
 
 # Dev server (auto-fetches project data)
 npm run dev
@@ -79,9 +83,9 @@ npm test
 
 ## 🔒 Security
 
+- **Supabase RLS** — Row Level Security ensures read-only public access and authenticated-only inserts
 - **Content Security Policy** — restricts script execution to trusted origins
 - **XSS Protection** — HTML sanitization on markdown via `rehype-sanitize`
-- **No Client-Side API Keys** — GitHub/Vercel tokens used only at build time
 - **TypeScript Strict Mode** — compile-time error detection
 - **NIST CSF 2.0 Tier 3** — see [security_report.md](./security_report.md)
 

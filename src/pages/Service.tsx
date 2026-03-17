@@ -13,7 +13,7 @@ const Service = () => {
                     </p>
                     <ResumeDownloader
                         label="Download Service Resume"
-                        filePath="/assets/resumes/resume_service.pdf"
+                        sector="Service"
                         variant="outline"
                         className="text-blue-900 dark:text-white border-blue-900 dark:border-white hover:bg-blue-900 dark:hover:bg-white hover:text-white dark:hover:text-blue-950"
                     />

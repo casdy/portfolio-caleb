@@ -77,7 +77,7 @@ export interface MergedProject {
 
 export interface ResumeDownloaderProps {
   label: string;
-  filePath: string;
+  sector: string;
   variant?: 'primary' | 'outline';
   className?: string;
 }

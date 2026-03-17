@@ -89,6 +89,16 @@ npm test
 - **TypeScript Strict Mode** — compile-time error detection
 - **NIST CSF 2.0 Tier 3** — see [security_report.md](./security_report.md)
 
+## 🔒 Security Updates
+
+- Fixed **jspdf** (script injection) by upgrading to `^4.2.1`.
+- Resolved **minimatch** ReDoS vulnerability via `npm audit fix`.
+- Patched **rollup** arbitrary file write issue via `npm audit fix`.
+- Confirmed **serialize-javascript** is not present.
+
+These changes bring the project to **0 vulnerabilities** as reported by `npm audit`.
+
+
 ## 📝 License
 
 Private — not licensed for public use.

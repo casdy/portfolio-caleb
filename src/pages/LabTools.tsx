@@ -12,7 +12,8 @@ import {
   Lock, 
   Hash,
   X,
-  Activity
+  Activity,
+  FileType
 } from 'lucide-react';
 
 const JsonToTs = React.lazy(() => import('../components/tools/JsonToTs'));
@@ -25,6 +26,7 @@ const ColorConverter = React.lazy(() => import('../components/tools/ColorConvert
 const MarkdownPreview = React.lazy(() => import('../components/tools/MarkdownPreview'));
 const SecureKeyGen = React.lazy(() => import('../components/tools/SecureKeyGen'));
 const BcryptHash = React.lazy(() => import('../components/tools/BcryptHash'));
+const FileConverter = React.lazy(() => import('../components/tools/FileConverter'));
 
 // Tool Types
 interface Tool {
@@ -116,6 +118,14 @@ const tools: Tool[] = [
     icon: Hash,
     component: BcryptHash,
     color: 'from-zinc-500 to-slate-500',
+  },
+  {
+    id: 'file-converter',
+    title: 'File Converter',
+    description: 'Convert MD, TXT, HTML, CSV, JSON to PDF and back.',
+    icon: FileType,
+    component: FileConverter,
+    color: 'from-teal-500 to-emerald-500',
   },
 ];
 

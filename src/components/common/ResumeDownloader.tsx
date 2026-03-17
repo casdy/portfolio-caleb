@@ -23,7 +23,7 @@ const ResumeDownloader: React.FC<ResumeDownloaderProps> = ({
                     .eq('sector', sector)
                     .order('created_at', { ascending: false })
                     .limit(1)
-                    .single();
+                    .maybeSingle();
 
                 if (error) {
                     console.error('Error fetching resume for sector', sector, error);

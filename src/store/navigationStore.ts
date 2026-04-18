@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 interface NavigationState {
-  currentSection: string; // pathname like '/', '/culinary', '/labtools'
+  currentSection: string; // pathname like '/', '/labtools'
   isNavigating: boolean;
   setSection: (path: string) => void;
   setNavigating: (navigating: boolean) => void;

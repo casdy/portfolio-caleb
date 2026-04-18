@@ -7,30 +7,16 @@ interface SkeletonProps {
 }
 
 interface PageSplashProps {
-  type: 'tech' | 'culinary' | 'service' | 'labtools';
+  type: 'tech' | 'labtools';
 }
 
 const splashConfig = {
   tech: {
     icon: Code2,
-    color: 'text-cyan-400',
-    glow: 'bg-cyan-500/20',
-    border: 'border-cyan-500/30',
+    color: 'text-cyber-cyan',
+    glow: 'bg-cyber-cyan/20',
+    border: 'border-cyber-cyan/30',
     label: 'TECH_NEXUS_OS'
-  },
-  culinary: {
-    icon: Utensils,
-    color: 'text-orange-400',
-    glow: 'bg-orange-500/20',
-    border: 'border-orange-500/30',
-    label: 'CULINARY_CORE_v2.0'
-  },
-  service: {
-    icon: Headphones,
-    color: 'text-fuchsia-400',
-    glow: 'bg-fuchsia-500/20',
-    border: 'border-fuchsia-500/30',
-    label: 'SERVICE_LAYER_ACTIVE'
   },
   labtools: {
     icon: Beaker,
@@ -42,24 +28,24 @@ const splashConfig = {
 };
 
 export const SkeletonCard: React.FC<SkeletonProps> = ({ className = '' }) => (
-  <div className={`bg-slate-200/50 dark:bg-slate-800/50 animate-pulse border border-slate-300/50 dark:border-slate-700/50 rounded-xl ${className}`} />
+  <div className={`bg-zinc-100 dark:bg-zinc-900 animate-pulse border border-zinc-200 dark:border-zinc-800 rounded-xl ${className}`} />
 );
 
 export const SkeletonModal: React.FC<SkeletonProps> = ({ className = '' }) => (
-  <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-100/80 dark:bg-slate-950/80 backdrop-blur-sm`}>
-    <div className={`w-full max-w-4xl h-[80vh] bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-700/50 rounded-2xl animate-pulse ${className}`} />
+  <div className={`fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-white/80 dark:bg-black/80 backdrop-blur-sm`}>
+    <div className={`w-full max-w-4xl h-[80vh] bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-2xl animate-pulse ${className}`} />
   </div>
 );
 
 export const SkeletonChat: React.FC<SkeletonProps> = ({ className = '' }) => (
-  <div className={`w-80 sm:w-96 h-[500px] flex flex-col bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border border-cyan-500/50 rounded-xl overflow-hidden animate-pulse ${className}`}>
-    <div className="h-14 bg-slate-50 dark:bg-slate-900 border-b border-cyan-500/30" />
+  <div className={`w-80 sm:w-96 h-[500px] flex flex-col bg-white dark:bg-[#0a0a0a] backdrop-blur-md border border-cyber-cyan/30 rounded-xl overflow-hidden animate-pulse ${className}`}>
+    <div className="h-14 bg-zinc-50 dark:bg-zinc-900 border-b border-cyber-cyan/20" />
     <div className="flex-1 p-4 space-y-4">
-      <div className="w-2/3 h-10 bg-slate-100 dark:bg-slate-800 rounded-2xl" />
-      <div className="w-1/2 h-10 bg-slate-100 dark:bg-slate-800 rounded-2xl self-end" />
-      <div className="w-3/4 h-10 bg-slate-100 dark:bg-slate-800 rounded-2xl" />
+      <div className="w-2/3 h-10 bg-zinc-100 dark:bg-zinc-800 rounded-2xl" />
+      <div className="w-1/2 h-10 bg-zinc-100 dark:bg-zinc-800 rounded-2xl self-end" />
+      <div className="w-3/4 h-10 bg-zinc-100 dark:bg-zinc-800 rounded-2xl" />
     </div>
-    <div className="h-16 bg-slate-50 dark:bg-slate-900 border-t border-cyan-500/30" />
+    <div className="h-16 bg-zinc-50 dark:bg-zinc-900 border-t border-cyber-cyan/20" />
   </div>
 );
 

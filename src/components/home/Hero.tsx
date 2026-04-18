@@ -30,9 +30,10 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-3xl md:text-5xl lg:text-6xl font-bold font-mono tracking-tight text-white mb-6 uppercase"
+                    className="text-3xl md:text-5xl lg:text-6xl font-bold font-mono tracking-tight text-zinc-900 dark:text-zinc-100 mb-6 uppercase flex items-center justify-center"
                 >
                     Caleb Labs
+                    <span className="terminal-cursor text-cyber-cyan opacity-80" />
                 </motion.h1>
 
                 <motion.p

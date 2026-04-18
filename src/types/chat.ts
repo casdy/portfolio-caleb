@@ -4,7 +4,7 @@ export interface FAQItem {
   keywords: string[];
   question: string;
   answer: string;
-  routeContext: string[]; // e.g., ["global"], ["/"], ["/culinary"]
+  routeContext: string[]; // e.g., ["global"], ["/"], ["/labtools"]
   followUpIds?: string[]; // IDs of related FAQ items to suggest
 }
 

@@ -20,7 +20,7 @@ const FOLLOW_UP_MAP: Record<string, string[]> = {
   goodbye:          [],
   help:             ["What's your tech stack?", "Tell me about LabTools", "Are you available?"],
   chatbot_info:     ["How was this portfolio built?", "What's your coding philosophy?"],
-  who_is_caleb:     ["What's your tech stack?", "Where is Caleb located?", "Career goals?"],
+  who_is_caleb:     ["What's your tech stack?", "Where is Caleb located?", "Contact info?"],
   where_located:    ["Are you available for hire?", "Can I contact you?"],
   career_switch:    ["What are your biggest strengths?", "Career goals?"],
   contact_info:     ["Can I download your resume?", "Are you available for hire?"],
@@ -49,11 +49,6 @@ const FOLLOW_UP_MAP: Record<string, string[]> = {
   jwt_decoder:      ["JSON to TypeScript tool?", "Is the data safe?"],
   cron_translator:  ["Regex tester?", "JSON to TypeScript tool?"],
   regex_tester:     ["Cron translator?", "JWT decoder?"],
-  culinary_background: ["Culinary skills?", "Why include culinary experience?"],
-  culinary_skills:  ["Culinary background?", "Why include culinary experience?"],
-  why_culinary:     ["What are your soft skills?", "Biggest strengths?"],
-  service_approach: ["Soft skills?", "Biggest strengths?"],
-  service_skills:   ["Customer service approach?", "Career goals?"],
   page_summary:     ["How do I navigate this site?", "Who is Caleb?"],
   navigation_help:  ["What is this page about?", "What is LABTOOLS?"],
   what_is_node:     ["How do I interact with projects?", "How do projects get populated?"],
@@ -71,12 +66,12 @@ const FOLLOW_UP_MAP: Record<string, string[]> = {
 
 // ─── Smart fallback responses ───
 const SMART_FALLBACKS = [
-  "Hmm, I'm not sure about that one! Try asking about Caleb's tech stack, projects, culinary background, or any of the LABTOOLS utilities. 🎯",
-  "That's a bit outside my wiring! I know everything about Caleb's skills, education, work experience, and this portfolio. What would you like to know?",
+  "Hmm, I'm not sure about that one! Try asking about Caleb's tech stack, projects, or any of the LABTOOLS utilities. 🎯",
+  "That's a bit outside my wiring! I know everything about Caleb's technical skills, education, and this portfolio. What would you like to know?",
   "I didn't catch that — but I'm great at answering questions about React, TypeScript, Caleb's career, or how this site works! Give it a shot. 💡",
   "My circuits didn't match that one. Try something like: 'What's your tech stack?', 'Are you available for hire?', or 'What is LABTOOLS?'",
-  "Not quite in my database! I can tell you about Caleb's skills (React, Node, TypeScript...), his background, projects, or the tools on this site. What interests you?",
-  "I'm specialized in all things Caleb Labs — skills, projects, career, and tools. Could you rephrase, or try asking about one of those? 🤖"
+  "Not quite in my database! I can tell you about Caleb's architecture (React, Node, TypeScript...), his projects, or the tools on this site. What interests you?",
+  "I'm specialized in all things Caleb Labs — skills, projects, career architecture, and tools. Could you rephrase, or try asking about one of those? 🤖"
 ];
 
 const FALLBACK_SUGGESTIONS = ["Who is Caleb?", "What's your tech stack?", "What is LABTOOLS?", "Are you available for hire?"];
@@ -132,8 +127,6 @@ export interface ChatbotResponse {
 /** Get initial FAQ chips based on current route */
 export function getInitialSuggestions(currentPath: string): string[] {
   if (currentPath === '/labtools') return ["What is LABTOOLS?", "Is my data safe?", "JSON to TypeScript?"];
-  if (currentPath === '/culinary') return ["Culinary background?", "Culinary skills?", "Download resume?"];
-  if (currentPath === '/service') return ["Customer service approach?", "Soft skills?", "Download resume?"];
   return ["Who is Caleb?", "What's your tech stack?", "Are you hiring?"];
 }
 

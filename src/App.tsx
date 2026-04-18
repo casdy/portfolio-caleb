@@ -99,7 +99,7 @@ function App() {
   return (
     <Router>
       <ScrollProgress />
-      <div className="flex flex-col min-h-screen bg-transparent font-sans text-zinc-900 dark:text-white relative z-10">
+      <div className="flex flex-col min-h-screen bg-transparent font-sans text-zinc-900 dark:text-zinc-100 relative z-10">
         <Navbar />
         <main className="flex-grow pt-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full">
           <AnimatedRoutes />

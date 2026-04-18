@@ -7,9 +7,7 @@ const Logo: React.FC<LogoProps> = ({ className = "" }) => {
     
     // Determine subtext based on navigation store (updated mid-splash)
     let subText = ".TECH";
-    if (currentSection === '/culinary') subText = ".CULINARY";
-    else if (currentSection === '/service') subText = ".SERVICE";
-    else if (currentSection === '/labtools') subText = ".LABTOOLS";
+    if (currentSection === '/labtools') subText = ".LABTOOLS";
 
     return (
         <motion.div 

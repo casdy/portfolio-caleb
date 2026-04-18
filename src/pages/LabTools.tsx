@@ -166,11 +166,12 @@ const LabTools = () => {
           transition={{ delay: 0.2 }}
           className="relative z-10"
         >
-          <h1 className="text-4xl md:text-6xl font-display font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500">
-            UTILITY NEXUS
+          <h1 className="text-4xl md:text-6xl font-mono font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500 uppercase tracking-tight flex items-center justify-center">
+            LABTOOLS
+            <span className="terminal-cursor text-cyber-cyan opacity-80" />
           </h1>
-          <p className="text-zinc-300 dark:text-zinc-300 text-lg md:text-xl max-w-2xl mx-auto px-4">
-            A high-performance toolkit for modern developers. 
+          <p className="text-zinc-600 dark:text-zinc-400 text-lg md:text-xl max-w-2xl mx-auto px-4 leading-relaxed">
+            A free high-performance toolkit for modern developers. 
             Execution-grade utilities, zero latency, 100% client-side.
           </p>
         </motion.div>
@@ -190,20 +191,24 @@ const LabTools = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.05 }}
             onClick={() => setSelectedTool(tool.id)}
-            className="glass-panel group cursor-pointer p-6 relative overflow-hidden flex flex-col items-start gap-4 hover:border-cyan-500/50 transition-colors"
+            className="glass-panel group cursor-pointer p-6 relative overflow-hidden flex flex-col items-start gap-4 hover:border-cyan-500/50 transition-colors spotlight-border"
+            onMouseMove={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              e.currentTarget.style.setProperty('--x', `${e.clientX - rect.left}px`);
+              e.currentTarget.style.setProperty('--y', `${e.clientY - rect.top}px`);
+            }}
           >
-            {/* Hover Gradient */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${tool.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+            {/* Hover Gradient mask handled by spotlight-border in CSS */}
             
             <div className={`p-3 rounded-xl bg-gradient-to-br ${tool.color} shadow-lg shadow-cyan-500/10`}>
               <tool.icon className="w-6 h-6 text-white" />
             </div>
             
             <div>
-              <h3 className="text-xl font-display font-bold mb-2 group-hover:text-cyan-400 transition-colors">
+              <h3 className="text-xl font-mono font-bold mb-2 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
                 {tool.title}
               </h3>
-              <p className="text-sm text-zinc-400 dark:text-zinc-300 leading-relaxed">
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 {tool.description}
               </p>
             </div>
@@ -220,26 +225,26 @@ const LabTools = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedTool(null)}
-              className="absolute inset-0 bg-slate-950/40 dark:bg-slate-950/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-slate-950/40 dark:bg-black/80 backdrop-blur-sm"
             />
             
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className="glass-panel w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col relative"
+              className="bg-white dark:bg-[#0a0a0a] w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col relative border border-zinc-200 dark:border-zinc-800 rounded-2xl shadow-2xl"
             >
               {/* Modal Header */}
-              <div className="p-6 border-b border-zinc-200 dark:border-zinc-800 flex justify-between items-center bg-zinc-50/50 dark:bg-zinc-900/50">
+              <div className="p-6 border-b border-zinc-200 dark:border-zinc-800 flex justify-between items-center bg-zinc-50 dark:bg-zinc-900/50">
                 <div className="flex items-center gap-4">
                   <div className={`p-2 rounded-lg bg-gradient-to-br ${activeTool?.color}`}>
                     {activeTool && <activeTool.icon className="w-5 h-5 text-white" />}
                   </div>
-                  <h2 className="text-2xl font-display font-bold">{activeTool?.title}</h2>
+                  <h2 className="text-2xl font-mono font-bold uppercase tracking-tight">{activeTool?.title}</h2>
                 </div>
                 <button 
                   onClick={() => setSelectedTool(null)}
-                  className="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors"
+                  className="p-2 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-full transition-colors text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
                 >
                   <X className="w-6 h-6" />
                 </button>

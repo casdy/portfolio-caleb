@@ -7,7 +7,6 @@
 
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Space Grotesk", sans-serif;
   --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
   /* Cyber-Space Accent Colors */
@@ -23,7 +22,7 @@
   }
   body {
     @apply font-sans antialiased;
-    @apply bg-zinc-50 text-zinc-900 leading-relaxed;
+    @apply bg-white text-zinc-900 leading-relaxed;
     @apply dark:bg-[#0a0a0a] dark:text-zinc-100;
     font-weight: 450;
     font-size: 16px;
@@ -80,5 +79,40 @@
   .glow-border-purple:hover {
     border-color: rgba(168, 85, 247, 0.4);
     box-shadow: 0 0 25px rgba(168, 85, 247, 0.15), inset 0 0 25px rgba(168, 85, 247, 0.05);
+  }
+
+  /* Terminal Cursor Animation */
+  .terminal-cursor {
+    @apply inline-block w-[0.2em] h-[1.0em] bg-current ml-1 align-middle;
+    animation: blink 0.9s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* Interactive Spotlight Border Utility */
+  .spotlight-border {
+    --x: -1000px;
+    --y: -1000px;
+    position: relative;
+    @apply transition-all duration-300;
+  }
+
+  .spotlight-border::before {
+    content: "";
+    @apply absolute -inset-[1px] rounded-[inherit] pointer-events-none opacity-0 transition-opacity duration-300;
+    background: radial-gradient(
+      600px circle at var(--x) var(--y),
+      rgba(0, 229, 255, 0.35) 0%,
+      rgba(168, 85, 247, 0.1) 40%,
+      transparent 80%
+    );
+    z-index: -1;
+  }
+
+  .spotlight-border:hover::before {
+    @apply opacity-100;
   }
 }

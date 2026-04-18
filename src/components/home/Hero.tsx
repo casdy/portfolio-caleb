@@ -2,7 +2,6 @@ import { ArrowDown, Github, Linkedin } from 'lucide-react';
 import Button from '../common/Button';
 import ResumeDownloader from '../common/ResumeDownloader';
 import { motion } from 'framer-motion';
-import { TypeAnimation } from 'react-type-animation';
 
 const Hero = () => {
     return (
@@ -31,36 +30,18 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    className="text-5xl md:text-7xl font-bold font-display tracking-tight text-zinc-900 dark:text-white mb-6"
+                    className="text-3xl md:text-5xl lg:text-6xl font-bold font-mono tracking-tight text-white mb-6 uppercase"
                 >
-                    <span className="block mb-2">My Passion is</span>
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-400">
-                        <TypeAnimation
-                            sequence={[
-                                'Building Apps.',
-                                2000,
-                                'Solving Problems.',
-                                2000,
-                                'Great User Experience.',
-                                2000,
-                                'Clean Code.',
-                                2000
-                            ]}
-                            wrapper="span"
-                            speed={50}
-                            repeat={Infinity}
-                        />
-                    </span>
+                    Caleb Labs
                 </motion.h1>
 
                 <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.8 }}
-                    className="mt-4 max-w-2xl mx-auto text-xl text-zinc-700 dark:text-zinc-200"
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                    className="mt-4 max-w-3xl mx-auto text-xl md:text-2xl text-zinc-400 font-medium leading-relaxed"
                 >
-                    Hi, I'm Caleb Ojukwu. I bridge the gap between complex problems and elegant solutions.
-                    From full-stack applications to data-driven tools, I build with purpose and precision.
+                    Full-Stack Engineer specializing in high-performance React architectures, AI-integrated tooling, and real-time data orchestration.
                 </motion.p>
 
                 <motion.div
@@ -69,14 +50,14 @@ const Hero = () => {
                     transition={{ delay: 0.8, duration: 0.8 }}
                     className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center"
                 >
-                    <Button onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
-                        View Work
+                    <Button to="https://github.com/casdy" target="_blank" className="font-mono uppercase tracking-wider text-sm bg-zinc-900 border border-white/10 text-white hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all">
+                        View GitHub
                     </Button>
                     <ResumeDownloader
                         label="Download Resume"
                         sector="Tech"
                         variant="outline"
-                        className="text-zinc-700 dark:text-white border-zinc-300 dark:border-white hover:bg-zinc-100 dark:hover:bg-white/10"
+                        className="font-mono uppercase tracking-wider text-sm text-zinc-400 border-zinc-700 hover:bg-zinc-800 hover:text-white"
                     />
                     <div className="flex gap-4 ml-0 sm:ml-4 mt-4 sm:mt-0 border-l-0 sm:border-l pl-0 sm:pl-4 border-zinc-200 dark:border-zinc-700">
                         <a href="https://github.com/casdy" target="_blank" rel="noopener noreferrer" className="text-zinc-400 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">

@@ -71,6 +71,8 @@ export interface MergedProject {
   githubRepoName: string | null;
   /** Path to a local preview screenshot image (e.g. /previews/geopol.png) */
   previewImage: string | null;
+  /** Path to a local mobile preview screenshot image (e.g. /previews/geopol-mobile.png) */
+  previewImageMobile: string | null;
 }
 
 // ─── Component Prop Types ───────────────────────────────────────────────────

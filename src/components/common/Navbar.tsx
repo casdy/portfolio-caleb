@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Code, ChefHat, Users, LayoutGrid, type LucideIcon } from 'lucide-react';
+import { Menu, X, Code, LayoutGrid, type LucideIcon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
 import Logo from './Logo';
@@ -27,8 +27,6 @@ const Navbar = () => {
     const navLinks: NavLink[] = [
         { name: 'Tech', path: '/', icon: Code },
         { name: 'LabTools', path: '/labtools', icon: LayoutGrid },
-        { name: 'Culinary', path: '/culinary', icon: ChefHat },
-        { name: 'Service', path: '/service', icon: Users },
     ];
 
     const isActive = (path: string) => location.pathname === path;

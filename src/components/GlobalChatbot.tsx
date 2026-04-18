@@ -57,37 +57,37 @@ export const GlobalChatbot: React.FC = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className={`mb-4 w-[calc(100vw-2rem)] sm:w-96 h-[60vh] sm:h-[500px] flex flex-col rounded-xl overflow-hidden border shadow-lg ${
+            className={`mb-4 w-[calc(100vw-2rem)] sm:w-[400px] h-[60vh] sm:h-[500px] flex flex-col rounded-xl overflow-hidden border transition-all ${
               isDark
-                ? 'border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.2)] bg-[#020410]'
-                : 'border-zinc-300 shadow-zinc-200/50 bg-white'
+                ? 'border-white/10 shadow-2xl bg-[#0a0a0a]'
+                : 'border-zinc-200 shadow-xl bg-white'
             }`}
           >
             {/* ── Header ── */}
-            <div className={`border-b p-4 flex justify-between items-center ${
+            <div className={`border-b px-5 py-4 flex justify-between items-center ${
               isDark
-                ? 'bg-[#020410]/90 backdrop-blur-sm border-cyan-500/30'
+                ? 'bg-[#0a0a0a]/90 backdrop-blur-md border-white/10'
                 : 'bg-zinc-50 border-zinc-200'
             }`}>
               <div className="flex flex-col">
-                <div className={`flex items-center gap-2 font-mono text-sm font-bold tracking-wider ${
-                  isDark ? 'text-cyan-400' : 'text-blue-600'
+                <div className={`flex items-center gap-2 font-mono text-sm font-bold tracking-wider uppercase ${
+                  isDark ? 'text-white' : 'text-black'
                 }`}>
-                  <Terminal size={18} />
-                  <span>LABS_ASSISTANT_OS</span>
+                  <Terminal size={16} />
+                  <span>Caleb_Assistant</span>
                 </div>
-                <div className={`flex items-center gap-1.5 font-mono text-[9px] mt-0.5 ${
-                  isDark ? 'text-slate-500' : 'text-zinc-400'
+                <div className={`flex items-center gap-2 font-mono text-[10px] mt-1 ${
+                  isDark ? 'text-zinc-500' : 'text-zinc-400'
                 }`}>
-                  <Clock size={10} className={isDark ? 'text-cyan-500/50' : 'text-blue-400/50'} />
-                  <span>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false })}</span>
-                  <span className={isDark ? 'text-cyan-500/30' : 'text-zinc-300'}>|</span>
-                  <span className="text-emerald-500/70">STABLE</span>
+                  <Clock size={10} />
+                  <span>{currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}</span>
+                  <span className="opacity-50">|</span>
+                  <span className={isDark ? 'text-white' : 'text-black'}>SYS.STABLE</span>
                 </div>
               </div>
               <button 
                 onClick={toggleChat}
-                className={`transition-colors ${isDark ? 'text-slate-400 hover:text-cyan-400' : 'text-zinc-400 hover:text-blue-600'}`}
+                className={`transition-colors ${isDark ? 'text-zinc-500 hover:text-white' : 'text-zinc-400 hover:text-black'}`}
                 aria-label="Close Chat"
               >
                 <X size={20} />
@@ -95,21 +95,21 @@ export const GlobalChatbot: React.FC = () => {
             </div>
 
             {/* ── Chat History ── */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-cyan-900 scrollbar-track-transparent">
+            <div className="flex-1 overflow-y-auto p-5 space-y-6 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
               {messages.map((msg) => (
                 <div key={msg.id} className="space-y-2">
                   <div 
                     className={`flex flex-col max-w-[85%] ${msg.sender === 'user' ? 'self-end items-end ml-auto' : 'self-start items-start'}`}
                   >
                     <div 
-                      className={`px-4 py-2.5 text-sm leading-relaxed shadow-sm
+                      className={`px-4 py-3 text-sm leading-relaxed font-mono
                         ${msg.sender === 'user' 
                           ? isDark
-                            ? 'bg-fuchsia-600/20 text-fuchsia-50 border border-fuchsia-500/50 rounded-2xl rounded-tr-sm font-mono'
-                            : 'bg-blue-600 text-white rounded-2xl rounded-tr-sm'
+                            ? 'bg-white text-black rounded-lg rounded-tr-sm'
+                            : 'bg-black text-white rounded-lg rounded-tr-sm'
                           : isDark
-                            ? 'bg-[#0a0f2e]/80 text-cyan-50 border border-cyan-500/30 rounded-2xl rounded-tl-sm font-mono backdrop-blur-sm'
-                            : 'bg-zinc-100 text-zinc-800 border border-zinc-200 rounded-2xl rounded-tl-sm'
+                            ? 'bg-zinc-900 text-zinc-300 border border-white/10 rounded-lg rounded-tl-sm'
+                            : 'bg-zinc-100 text-zinc-800 border border-zinc-200 rounded-lg rounded-tl-sm'
                         }`}
                     >
                       {msg.text}
@@ -130,10 +130,10 @@ export const GlobalChatbot: React.FC = () => {
                           transition={{ delay: 0.1 * i + 0.3 }}
                           onClick={() => handleSuggestionClick(s)}
                           disabled={isTyping}
-                          className={`text-xs px-3 py-1.5 rounded-full border transition-all disabled:opacity-40 disabled:cursor-not-allowed ${
+                          className={`text-[10px] px-3 py-1.5 rounded-full border transition-all uppercase tracking-wider font-mono disabled:opacity-40 disabled:cursor-not-allowed ${
                             isDark
-                              ? 'border-cyan-500/40 text-cyan-300 hover:bg-cyan-500/15 hover:border-cyan-400/60 font-mono'
-                              : 'border-blue-300 text-blue-600 hover:bg-blue-50 hover:border-blue-400'
+                              ? 'border-white/10 text-zinc-400 hover:text-white hover:border-white/30 hover:bg-zinc-900'
+                              : 'border-zinc-300 text-zinc-600 hover:text-black hover:border-zinc-400 hover:bg-zinc-50'
                           }`}
                         >
                           {s}
@@ -146,14 +146,14 @@ export const GlobalChatbot: React.FC = () => {
               
               {/* Typing Indicator */}
               {isTyping && (
-                <div className={`self-start max-w-[85%] rounded-2xl rounded-tl-sm px-4 py-3 flex gap-1 items-center ${
+                <div className={`self-start max-w-[85%] rounded-lg rounded-tl-sm px-4 py-4 flex gap-1.5 items-center ${
                   isDark
-                    ? 'bg-[#0a0f2e]/80 text-cyan-50 border border-cyan-500/30 backdrop-blur-sm'
+                    ? 'bg-zinc-900 border border-white/10'
                     : 'bg-zinc-100 border border-zinc-200'
                 }`}>
-                  <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0 }} className={`w-1.5 h-1.5 rounded-full ${isDark ? 'bg-cyan-400' : 'bg-blue-500'}`} />
-                  <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className={`w-1.5 h-1.5 rounded-full ${isDark ? 'bg-cyan-400' : 'bg-blue-500'}`} />
-                  <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }} className={`w-1.5 h-1.5 rounded-full ${isDark ? 'bg-cyan-400' : 'bg-blue-500'}`} />
+                  <motion.div animate={{ opacity: [0.4, 1, 0.4] }} transition={{ repeat: Infinity, duration: 1.4, delay: 0 }} className={`w-1.5 h-1.5 rounded-full ${isDark ? 'bg-zinc-500' : 'bg-zinc-400'}`} />
+                  <motion.div animate={{ opacity: [0.4, 1, 0.4] }} transition={{ repeat: Infinity, duration: 1.4, delay: 0.2 }} className={`w-1.5 h-1.5 rounded-full ${isDark ? 'bg-zinc-500' : 'bg-zinc-400'}`} />
+                  <motion.div animate={{ opacity: [0.4, 1, 0.4] }} transition={{ repeat: Infinity, duration: 1.4, delay: 0.4 }} className={`w-1.5 h-1.5 rounded-full ${isDark ? 'bg-zinc-500' : 'bg-zinc-400'}`} />
                 </div>
               )}
               <div ref={messagesEndRef} />
@@ -162,9 +162,9 @@ export const GlobalChatbot: React.FC = () => {
             {/* ── Input Area ── */}
             <form 
               onSubmit={handleSend}
-              className={`p-3 border-t flex gap-2 ${
+              className={`p-4 border-t flex gap-3 ${
                 isDark
-                  ? 'bg-[#020410]/90 backdrop-blur-sm border-cyan-500/30'
+                  ? 'bg-[#0a0a0a] border-white/10'
                   : 'bg-zinc-50 border-zinc-200'
               }`}
             >
@@ -172,20 +172,20 @@ export const GlobalChatbot: React.FC = () => {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask me anything..."
-                className={`flex-1 rounded-md px-3 py-2 text-sm outline-none transition-all border ${
+                placeholder="Command input..."
+                className={`flex-1 rounded-md px-4 py-2 text-sm outline-none transition-all border font-mono ${
                   isDark
-                    ? 'bg-[#0a0f2e]/60 text-cyan-50 placeholder-slate-500 border-slate-700 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 font-mono backdrop-blur-sm'
-                    : 'bg-white text-zinc-900 placeholder-zinc-400 border-zinc-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500'
+                    ? 'bg-zinc-900 border-white/10 text-white placeholder-zinc-600 focus:border-white/30'
+                    : 'bg-white border-zinc-300 text-black placeholder-zinc-400 focus:border-zinc-500'
                 }`}
               />
               <button 
                 type="submit"
                 disabled={!input.trim() || isTyping}
-                className={`p-2 rounded-md transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center w-10 h-10 border ${
+                className={`rounded-md transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center w-11 h-11 border ${
                   isDark
-                    ? 'bg-cyan-600/20 hover:bg-cyan-600/40 text-cyan-400 border-cyan-500/50'
-                    : 'bg-blue-600 hover:bg-blue-700 text-white border-blue-600'
+                    ? 'bg-white hover:bg-zinc-200 text-black border-white'
+                    : 'bg-black hover:bg-zinc-800 text-white border-black'
                 }`}
                 aria-label="Send Message"
               >
@@ -206,10 +206,10 @@ export const GlobalChatbot: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleChat}
-            className={`w-14 h-14 border-2 rounded-full flex items-center justify-center transition-all z-50 ${
+            className={`w-14 h-14 border rounded-full flex items-center justify-center transition-all z-50 ${
               isDark
-                ? 'bg-[#020410] border-cyan-500 text-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)]'
-                : 'bg-blue-600 border-blue-600 text-white shadow-lg hover:shadow-xl hover:bg-blue-700'
+                ? 'bg-zinc-900 border-white/10 text-white shadow-xl hover:bg-zinc-800 hover:border-white/30 hover:scale-105'
+                : 'bg-black border-black text-white shadow-lg hover:bg-zinc-800'
             }`}
             aria-label="Open Chat"
           >

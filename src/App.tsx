@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import React, { Suspense, useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import BackgroundAnimation from './components/common/BackgroundAnimation';
+
 import Navbar from './components/common/Navbar';
 import Footer from './components/common/Footer';
 import ScrollProgress from './components/common/ScrollProgress';
@@ -11,8 +11,6 @@ import { useNavigationStore } from './store/navigationStore';
 
 // Lazy load pages for better performance
 const Home = React.lazy(() => import('./pages/Home'));
-const Culinary = React.lazy(() => import('./pages/Culinary'));
-const Service = React.lazy(() => import('./pages/Service'));
 const LabTools = React.lazy(() => import('./pages/LabTools'));
 
 import type { PageTransitionProps } from './types';
@@ -33,12 +31,9 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
 const AnimatedRoutes = () => {
   const location = useLocation();
   const [navigating, setNavigating] = useState(false);
-  const [currentType, setCurrentType] = useState<'tech' | 'culinary' | 'service' | 'labtools'>('tech');
+  const [currentType, setCurrentType] = useState<'tech' | 'labtools'>('tech');
 
-  // Map path to splash type
-  const getPathType = (path: string): 'tech' | 'culinary' | 'service' | 'labtools' => {
-    if (path === '/culinary') return 'culinary';
-    if (path === '/service') return 'service';
+  const getPathType = (path: string): 'tech' | 'labtools' => {
     if (path === '/labtools') return 'labtools';
     return 'tech';
   };
@@ -54,8 +49,6 @@ const AnimatedRoutes = () => {
     const labelTimer = setTimeout(() => {
       const titles: Record<string, string> = {
         '/': 'Caleb Labs | Tech Nexus',
-        '/culinary': 'Caleb Labs | Culinary',
-        '/service': 'Caleb Labs | Service',
         '/labtools': 'Caleb Labs | LabTools',
       };
       document.title = titles[location.pathname] || 'Caleb Labs';
@@ -95,8 +88,6 @@ const AnimatedRoutes = () => {
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<PageTransition><Suspense fallback={null}><Home /></Suspense></PageTransition>} />
-          <Route path="/culinary" element={<PageTransition><Suspense fallback={null}><Culinary /></Suspense></PageTransition>} />
-          <Route path="/service" element={<PageTransition><Suspense fallback={null}><Service /></Suspense></PageTransition>} />
           <Route path="/labtools" element={<PageTransition><Suspense fallback={null}><LabTools /></Suspense></PageTransition>} />
         </Routes>
       </AnimatePresence>
@@ -108,7 +99,6 @@ function App() {
   return (
     <Router>
       <ScrollProgress />
-      <BackgroundAnimation />
       <div className="flex flex-col min-h-screen bg-transparent font-sans text-zinc-900 dark:text-white relative z-10">
         <Navbar />
         <main className="flex-grow pt-24 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto w-full">

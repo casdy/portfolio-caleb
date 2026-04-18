@@ -40,10 +40,11 @@ const ProjectsGrid = () => {
                         transition={{ delay: 0.2 }}
                         className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto font-mono text-sm"
                     >
-                        <span className="text-cyan-600 dark:text-cyan-400">{liveCount} live nodes</span>
-                        {' // '}
-                        <span className="text-purple-600 dark:text-purple-400">{archiveCount} archive nodes</span>
-                        {' // connected'}
+                        <span className="text-white bg-zinc-900 border border-white/10 px-2 py-0.5 rounded">{liveCount} LIVE</span>
+                        <span className="mx-3 opacity-30">|</span>
+                        <span className="text-zinc-400 bg-black border border-white/10 px-2 py-0.5 rounded">{archiveCount} ARCHIVED</span>
+                        <span className="mx-3 opacity-30">|</span>
+                        <span className="text-zinc-500">SYS_CONNECTED</span>
                     </motion.p>
                 </div>
 

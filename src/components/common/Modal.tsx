@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import type { ProjectModalProps } from '../../types';
 
 type ModalTab = 'preview' | 'readme';
+type Viewport = 'desktop' | 'mobile';
 
 const Modal: React.FC<ProjectModalProps> = ({ onClose, project, content }) => {
     if (!project) return null;
@@ -19,6 +20,7 @@ const Modal: React.FC<ProjectModalProps> = ({ onClose, project, content }) => {
     const hasPreview = !!screenshotUrl;
 
     const [activeTab, setActiveTab] = useState<ModalTab>(hasPreview ? 'preview' : 'readme');
+    const [viewport, setViewport] = useState<Viewport>('desktop');
     const [screenshotLoaded, setScreenshotLoaded] = useState(false);
     const [screenshotError, setScreenshotError] = useState(false);
 
@@ -38,6 +40,7 @@ const Modal: React.FC<ProjectModalProps> = ({ onClose, project, content }) => {
     // Reset state when project changes
     useEffect(() => {
         setActiveTab(hasPreview ? 'preview' : 'readme');
+        setViewport('desktop');
         setScreenshotLoaded(false);
         setScreenshotError(false);
     }, [project.key, hasPreview]);
@@ -141,11 +144,27 @@ const Modal: React.FC<ProjectModalProps> = ({ onClose, project, content }) => {
                                     </div>
                                 )}
 
+                                 {/* Viewport Toggle */}
+                                <div className="absolute top-4 right-4 z-20 flex bg-zinc-900/80 backdrop-blur-md rounded-lg p-1 border border-zinc-700 shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); setViewport('desktop'); setScreenshotLoaded(false); }}
+                                        className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all ${viewport === 'desktop' ? 'bg-cyan-500 text-slate-950' : 'text-zinc-400 hover:text-white'}`}
+                                    >
+                                        Desktop
+                                    </button>
+                                    <button
+                                        onClick={(e) => { e.stopPropagation(); setViewport('mobile'); setScreenshotLoaded(false); }}
+                                        className={`px-3 py-1.5 text-xs font-bold rounded-md transition-all ${viewport === 'mobile' ? 'bg-cyan-500 text-slate-950' : 'text-zinc-400 hover:text-white'}`}
+                                    >
+                                        Mobile
+                                    </button>
+                                </div>
+
                                 {/* Screenshot image */}
                                 <img
-                                    src={screenshotUrl}
+                                    src={viewport === 'desktop' ? project.previewImage! : (project.previewImageMobile || project.previewImage!)}
                                     alt={`Preview of ${project.name}`}
-                                    className={`w-full h-full max-h-[65vh] object-contain transition-opacity duration-500 ${screenshotLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                    className={`w-full h-full max-h-[65vh] object-contain transition-opacity duration-500 ${screenshotLoaded ? 'opacity-100' : 'opacity-0'} ${viewport === 'mobile' ? 'max-w-[390px] mx-auto' : ''}`}
                                     onLoad={() => setScreenshotLoaded(true)}
                                     onError={() => setScreenshotError(true)}
                                 />
@@ -181,7 +200,21 @@ const Modal: React.FC<ProjectModalProps> = ({ onClose, project, content }) => {
                                             animate={{ opacity: 1 }}
                                             transition={{ duration: 0.2 }}
                                         >
-                                            <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw, rehypeSanitize]}>
+                                            <ReactMarkdown 
+                                                remarkPlugins={[remarkGfm]} 
+                                                rehypePlugins={[
+                                                    rehypeRaw, 
+                                                    [rehypeSanitize, {
+                                                        tagNames: ['img', 'a', 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'li', 'span', 'div', 'code', 'pre', 'strong', 'em', 'blockquote', 'table', 'thead', 'tbody', 'tr', 'th', 'td', 'br', 'hr'],
+                                                        attributes: {
+                                                            '*': ['className', 'style'],
+                                                            'a': ['href', 'target', 'rel', 'title'],
+                                                            'img': ['src', 'alt', 'title', 'width', 'height', 'loading'],
+                                                            'code': ['className']
+                                                        }
+                                                    }]
+                                                ]}
+                                            >
                                                 {content}
                                             </ReactMarkdown>
                                         </motion.div>

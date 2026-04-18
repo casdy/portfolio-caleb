@@ -6,57 +6,38 @@ const bentoItems = [
         title: "Frontend",
         icon: Layout,
         desc: "React, HTML, Tailwind, Next.js, TypeScript",
-        colSpan: "col-span-1",
-        // Primary Gradient: Deep Indigo to Purple
-        bg: "bg-gradient-to-br from-blue-500 to-red-400",
-        text: "text-white"
+        colSpan: "col-span-1 border border-white/10 bg-[#0a0a0a] hover:border-white/30 transition-colors duration-300"
     },
     {
         title: "Mobile Dev",
         icon: Smartphone,
         desc: "React Native, Expo",
-        colSpan: "col-span-1 md:col-span-1",
-        // Secondary Gradient: Lighter Blue to Cyan
-        bg: "bg-gradient-to-br from-red-400 to-blue-600",
-        text: "text-white"
+        colSpan: "col-span-1 md:col-span-1 border border-white/10 bg-[#0a0a0a] hover:border-white/30 transition-colors duration-300"
     },
     {
         title: "API",
         icon: Globe,
         desc: "REST, FastAPI",
-        colSpan: "col-span-1",
-        // Lighter Accent: Soft gray for balance
-        bg: "bg-gradient-to-br from-green-400 to-blue-600",
-        text: "text-white"
+        colSpan: "col-span-1 border border-white/10 bg-[#0a0a0a] hover:border-white/30 transition-colors duration-300"
     },
     {
         title: "Backend",
         icon: Server,
         desc: "Node.js, Express, Python",
-        colSpan: "col-span-1",
-        // Solid Dark: Provides contrast to the gradient next to it
-        bg: "bg-gradient-to-br from-black to-blue-900",
-        text: "text-slate-100"
+        colSpan: "col-span-1 border border-white/10 bg-[#0a0a0a] hover:border-white/30 transition-colors duration-300"
     },
     {
         title: "Database",
         icon: Database,
         desc: "PostgreSQL, MySQL, Firebase",
-        colSpan: "col-span-1",
-        // Darkest Tone: Anchors the bottom of the grid
-        bg: "bg-gradient-to-br from-slate-300 to-red-900",
-        text: "text-white-300"
+        colSpan: "col-span-1 border border-white/10 bg-[#0a0a0a] hover:border-white/30 transition-colors duration-300"
     },
-
     {
         title: "DevOps",
         icon: Terminal,
         desc: "Git, Docker, AWS, CI/CD",
-        colSpan: "col-span-1",
-        // Neutral Dark: Distinct from the Database box
-        bg: "bg-black border border-white/10",
-        text: "text-gray-300"
-    },
+        colSpan: "col-span-1 border border-white/10 bg-[#0a0a0a] hover:border-white/30 transition-colors duration-300"
+    }
 
 ];
 
@@ -77,20 +58,20 @@ const BentoGrid = () => {
                     {bentoItems.map((item, index) => (
                         <motion.div
                             key={index}
-                            className={`${item.colSpan} ${item.bg} rounded-3xl p-6 relative overflow-hidden group shadow-lg cursor-pointer`}
+                            className={`${item.colSpan} rounded-3xl p-8 relative overflow-hidden group shadow-lg cursor-pointer`}
                             whileHover={{ scale: 1.02 }}
                             transition={{ type: "spring", stiffness: 300, damping: 20 }}
                         >
-                            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500">
-                                <item.icon size={120} />
+                            <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
+                                <item.icon size={120} className="text-white" />
                             </div>
 
                             <div className="relative z-10 h-full flex flex-col justify-end">
-                                <div className="mb-auto p-2 bg-white/10 backdrop-blur-sm rounded-lg w-fit">
-                                    <item.icon size={24} className={item.text} />
+                                <div className="mb-auto p-3 bg-white/5 border border-white/10 backdrop-blur-sm rounded-lg w-fit">
+                                    <item.icon size={24} className="text-white" />
                                 </div>
-                                <h3 className={`text-2xl font-bold ${item.text}`}>{item.title}</h3>
-                                <p className={`font-medium opacity-80 ${item.text}`}>{item.desc}</p>
+                                <h3 className={`text-2xl font-bold font-mono tracking-tight text-white mb-2 uppercase`}>{item.title}</h3>
+                                <p className={`font-mono text-sm tracking-wide text-zinc-400 leading-relaxed font-medium`}>{item.desc}</p>
                             </div>
                         </motion.div>
                     ))}

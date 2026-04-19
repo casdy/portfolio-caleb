@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Utensils, Headphones, Beaker, Terminal } from 'lucide-react';
+import { Code2, Beaker, Terminal } from 'lucide-react';
 
 interface SkeletonProps {
   className?: string;

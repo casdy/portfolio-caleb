@@ -1,6 +1,5 @@
 import { ArrowDown, Github, Linkedin } from 'lucide-react';
 import Button from '../common/Button';
-import ResumeDownloader from '../common/ResumeDownloader';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
@@ -49,25 +48,25 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8, duration: 0.8 }}
-                    className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center"
+                    className="mt-10 flex flex-col sm:flex-row gap-6 justify-center items-center"
                 >
-                    <Button to="https://github.com/casdy" target="_blank" className="font-mono uppercase tracking-wider text-sm bg-zinc-900 border border-white/10 text-white hover:border-white/30 hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all">
+                    <Button 
+                        to="https://github.com/casdy" 
+                        target="_blank" 
+                        className="font-mono uppercase tracking-wider text-base px-8 py-4 bg-zinc-900 border border-white/10 text-white hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all group"
+                    >
+                        <Github size={20} className="mr-3 group-hover:scale-110 transition-transform" />
                         View GitHub
                     </Button>
-                    <ResumeDownloader
-                        label="Download Resume"
-                        sector="Tech"
-                        variant="outline"
-                        className="font-mono uppercase tracking-wider text-sm text-zinc-400 border-zinc-700 hover:bg-zinc-800 hover:text-white"
-                    />
-                    <div className="flex gap-4 ml-0 sm:ml-4 mt-4 sm:mt-0 border-l-0 sm:border-l pl-0 sm:pl-4 border-zinc-200 dark:border-zinc-700">
-                        <a href="https://github.com/casdy" target="_blank" rel="noopener noreferrer" className="text-zinc-400 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
-                            <Github size={24} />
-                        </a>
-                        <a href="https://www.linkedin.com/in/calebojukwu/" target="_blank" rel="noopener noreferrer" className="text-zinc-400 dark:text-zinc-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
-                            <Linkedin size={24} />
-                        </a>
-                    </div>
+                    
+                    <Button 
+                        to="https://www.linkedin.com/in/calebojukwu/" 
+                        target="_blank" 
+                        className="font-mono uppercase tracking-wider text-base px-8 py-4 bg-zinc-900 border border-white/10 text-white hover:border-white/30 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all group"
+                    >
+                        <Linkedin size={20} className="mr-3 group-hover:scale-110 transition-transform text-cyan-400" />
+                        LinkedIn
+                    </Button>
                 </motion.div>
             </div>
 

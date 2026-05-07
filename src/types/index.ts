@@ -77,13 +77,6 @@ export interface MergedProject {
 
 // ─── Component Prop Types ───────────────────────────────────────────────────
 
-export interface ResumeDownloaderProps {
-  label: string;
-  sector: string;
-  variant?: 'primary' | 'outline';
-  className?: string;
-}
-
 export interface ProjectModalProps {
   isOpen: boolean;
   onClose: () => void;
